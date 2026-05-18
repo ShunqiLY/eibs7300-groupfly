@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GroupFly — 使用说明 / User Guide</title>
+<style>
+  :root {
+    --mint:      #7BC8A4;
+    --mint-dark: #5AA882;
+    --mint-deep: #3D8C65;
+    --mint-light:#EBF7F1;
+    --orange:    #F4A261;
+    --orange-lt: #FEF0E4;
+    --bg:        #F6FDFB;
+    --text-dark: #1A2B22;
+    --text-med:  #4A7862;
+    --text-lt:   #8FB09E;
+    --white:     #FFFFFF;
+    --red:       #F87171;
+    --yellow:    #FBBF24;
+    --green:     #34D399;
+    --border:    #C5E8D5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, 'PingFang SC', 'Hiragino Sans GB',
+                 'Microsoft YaHei', 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--text-dark);
+    line-height: 1.7;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    background: linear-gradient(140deg, var(--mint-dark) 0%, var(--mint-deep) 100%);
+    color: white;
+    padding: 64px 40px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+  }
+  .cover::after {
+    content: '';
+    position: absolute; bottom: -40px; left: -40px;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .cover-logo {
+    width: 80px; height: 80px; border-radius: 22px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    margin-bottom: 20px;
+  }
+  .cover h1 {
+    font-size: 36px; font-weight: 900; letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .cover .subtitle {
+    font-size: 15px; opacity: 0.8; font-weight: 600;
+    margin-bottom: 28px;
+  }
+  .cover-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px; padding: 4px 16px;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .cover-meta {
+    margin-top: 32px; font-size: 13px; opacity: 0.65; font-weight: 600;
+  }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--white);
+    border-bottom: 1.5px solid var(--border);
+    padding: 32px 40px;
+  }
+  .toc h2 {
+    font-size: 13px; font-weight: 800; color: var(--text-lt);
+    text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 16px;
+  }
+  .toc-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+  }
+  .toc-item {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--bg); border-radius: 10px;
+    padding: 10px 14px; text-decoration: none;
+    color: var(--text-med); font-size: 13.5px; font-weight: 700;
+    border: 1.5px solid var(--border);
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .toc-item:hover { border-color: var(--mint); background: var(--mint-light); }
+  .toc-num {
+    width: 22px; height: 22px; border-radius: 7px;
+    background: var(--mint); color: white;
+    font-size: 11px; font-weight: 900; display: flex;
+    align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  /* ── Main content ── */
+  main { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+
+  /* ── Section ── */
+  .section {
+    margin-top: 56px;
+  }
+  .section-header {
+    display: flex; align-items: center; gap: 14px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--mint-light);
+    margin-bottom: 28px;
+  }
+  .section-icon {
+    width: 44px; height: 44px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .icon-green  { background: var(--mint-light); }
+  .icon-orange { background: var(--orange-lt); }
+  .icon-blue   { background: #EEF4FF; }
+  .icon-purple { background: #F5F0FF; }
+  .icon-gray   { background: #F4F4F5; }
+
+  .section-header-text h2 {
+    font-size: 22px; font-weight: 900; color: var(--text-dark); line-height: 1.2;
+  }
+  .section-header-text p {
+    font-size: 12.5px; color: var(--text-lt); font-weight: 600; margin-top: 2px;
+  }
+
+  /* ── Bilingual block ── */
+  .bilingual {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; border-radius: 16px; overflow: hidden;
+    border: 1.5px solid var(--border); margin-bottom: 20px;
+  }
+  .bi-cn {
+    background: var(--mint-light);
+    padding: 18px 20px;
+    border-right: 1.5px solid var(--border);
+  }
+  .bi-en {
+    background: var(--white);
+    padding: 18px 20px;
+  }
+  .bi-lang {
+    font-size: 10px; font-weight: 800; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 8px;
+    opacity: 0.5;
+  }
+  .bi-cn .bi-lang { color: var(--mint-deep); }
+  .bi-en .bi-lang { color: var(--text-lt); }
+  .bi-cn p, .bi-en p {
+    font-size: 14px; line-height: 1.75; color: var(--text-dark);
+  }
+
+  @media (max-width: 640px) {
+    .bilingual { grid-template-columns: 1fr; }
+    .bi-cn { border-right: none; border-bottom: 1.5px solid var(--border); }
+  }
+
+  /* ── Steps ── */
+  .steps { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
+  .step {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--white); border-radius: 14px;
+    padding: 16px 18px; border: 1.5px solid var(--border);
+  }
+  .step-num {
+    width: 32px; height: 32px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--mint), var(--mint-dark));
+    color: white; font-size: 14px; font-weight: 900;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-body { flex: 1; }
+  .step-body strong { font-size: 14.5px; color: var(--text-dark); display: block; margin-bottom: 4px; }
+  .step-body p { font-size: 13px; color: var(--text-med); line-height: 1.65; }
+
+  /* ── Info cards ── */
+  .card-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px; margin-bottom: 20px;
+  }
+  .card {
+    background: var(--white); border-radius: 16px;
+    border: 1.5px solid var(--border);
+    padding: 18px 18px 16px; position: relative;
+  }
+  .card-icon { font-size: 26px; margin-bottom: 10px; }
+  .card h3 { font-size: 15px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
+  .card p { font-size: 13px; color: var(--text-med); line-height: 1.65; }
+  .card-tag {
+    display: inline-block; margin-top: 10px;
+    background: var(--mint-light); color: var(--mint-deep);
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.5px;
+    border-radius: 8px; padding: 3px 9px;
+  }
+  .card-tag.orange { background: var(--orange-lt); color: #B85A1A; }
+  .card-tag.green  { background: #ECFDF5; color: #065F46; }
+  .card-tag.red    { background: #FFF5F5; color: #B91C1C; }
+
+  /* ── Alert boxes ── */
+  .note {
+    border-radius: 14px; padding: 14px 18px;
+    display: flex; gap: 12px; align-items: flex-start;
+    margin-bottom: 20px; font-size: 13.5px; line-height: 1.65;
+  }
+  .note-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .note p { color: var(--text-dark); }
+  .note p strong { font-weight: 800; }
+  .note.tip  { background: var(--mint-light); border: 1.5px solid #A8D8BC; }
+  .note.warn { background: #FFFBEB; border: 1.5px solid #FDE68A; }
+  .note.info { background: #EEF4FF; border: 1.5px solid #BFDBFE; }
+
+  /* ── Screenshots ── */
+  .screenshot-wrap {
+    margin: 24px 0;
+    display: flex; justify-content: center;
+  }
+  .screenshot-wrap img {
+    border-radius: 18px; max-width: 100%;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+    border: 1.5px solid var(--border);
+  }
+  .screenshot-cap {
+    text-align: center; margin-top: 10px;
+    font-size: 12.5px; color: var(--text-lt); font-weight: 600;
+  }
+
+  /* ── Inline screenshots row ── */
+  .screenshot-row {
+    display: flex; gap: 16px; justify-content: center;
+    flex-wrap: wrap; margin: 24px 0;
+  }
+  .screenshot-row figure {
+    flex: 1; min-width: 200px; max-width: 380px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .screenshot-row img {
+    width: 100%; border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+    border: 1.5px solid var(--border);
+  }
+  .screenshot-row figcaption {
+    font-size: 12px; color: var(--text-lt); font-weight: 600; text-align: center;
+  }
+
+  /* ── UI mock ── */
+  .ui-mock {
+    background: var(--white); border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 20px 20px;
+    margin-bottom: 20px; font-size: 13px;
+  }
+  .ui-mock .mock-title {
+    font-size: 11px; font-weight: 800; color: var(--text-lt);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px;
+  }
+
+  /* ── Role badge ── */
+  .role-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    border-radius: 20px; padding: 5px 14px;
+    font-size: 13px; font-weight: 800; margin-right: 6px;
+  }
+  .role-traveler { background: var(--mint); color: white; }
+  .role-guide    { background: var(--orange); color: white; }
+  .role-family   { background: #86EFAC; color: #065F46; }
+
+  /* ── Status legend ── */
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 12px 0 20px; }
+  .legend-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 700; color: var(--text-med);
+  }
+  .dot { width: 12px; height: 12px; border-radius: 4px; flex-shrink: 0; }
+
+  /* ── Table ── */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 13.5px; }
+  th {
+    background: var(--mint-light); color: var(--mint-deep);
+    font-weight: 800; padding: 10px 14px; text-align: left;
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-dark); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--mint-light); }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--white); border-top: 1.5px solid var(--border);
+    text-align: center; padding: 28px 20px;
+    color: var(--text-lt); font-size: 12.5px; font-weight: 600;
+  }
+
+  /* ── Divider ── */
+  hr.section-divider {
+    border: none; border-top: 1.5px solid var(--border);
+    margin: 40px 0;
+  }
+
+  h3.subsection {
+    font-size: 16px; font-weight: 800; color: var(--text-dark);
+    margin: 28px 0 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  h3.subsection::before {
+    content: ''; display: inline-block;
+    width: 4px; height: 18px; border-radius: 2px;
+    background: var(--mint);
+  }
+
+  ul.feat-list { list-style: none; padding: 0; margin-bottom: 20px; }
+  ul.feat-list li {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 7px 0; border-bottom: 1px solid var(--border);
+    font-size: 13.5px; color: var(--text-dark);
+  }
+  ul.feat-list li:last-child { border-bottom: none; }
+  ul.feat-list li::before {
+    content: '✓'; color: var(--mint-dark); font-weight: 900;
+    font-size: 13px; margin-top: 1px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     COVER
+═══════════════════════════════════════════ -->
+<div class="cover">
+  <img class="cover-logo" src="uploads/b8ddd33314c6a77561ac9c92ec4bd77a.png" alt="GroupFly Logo">
+  <h1>GroupFly</h1>
+  <p class="subtitle">团队航空出行协调系统 &nbsp;·&nbsp; Group Air Travel Coordination System</p>
+  <span class="cover-badge">Prototype · 交互原型</span>
+  <p class="cover-meta">EIBS7300 小组作业 &nbsp;·&nbsp; 使用说明 / User Guide &nbsp;·&nbsp; 2026</p>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TOC
+═══════════════════════════════════════════ -->
+<div class="toc">
+  <h2>目录 / Contents</h2>
+  <div class="toc-grid">
+    <a class="toc-item" href="#s1"><span class="toc-num">1</span>产品简介 Overview</a>
+    <a class="toc-item" href="#s2"><span class="toc-num">2</span>打开原型 Opening</a>
+    <a class="toc-item" href="#s3"><span class="toc-num">3</span>角色切换 Role Switcher</a>
+    <a class="toc-item" href="#s4"><span class="toc-num">4</span>旅行者视图 Traveler</a>
+    <a class="toc-item" href="#s5"><span class="toc-num">5</span>领队视图 Guide</a>
+    <a class="toc-item" href="#s6"><span class="toc-num">6</span>家属视图 Family</a>
+    <a class="toc-item" href="#s7"><span class="toc-num">7</span>调参面板 Tweaks</a>
+    <a class="toc-item" href="#s8"><span class="toc-num">8</span>常见问题 FAQ</a>
+  </div>
+</div>
+
+<main>
+
+<!-- ═══════════════════════════════════════════
+     §1 OVERVIEW
+═══════════════════════════════════════════ -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <div class="section-icon icon-green">✈️</div>
+    <div class="section-header-text">
+      <h2>1. 产品简介 / Product Overview</h2>
+      <p>What is GroupFly and who is it for?</p>
+    </div>
+  </div>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">中文</div>
+      <p><strong>GroupFly</strong> 是一款面向<strong>老年人团体出行</strong>场景的移动应用原型，旨在解决老年旅行者在机场流程中的迷失、焦虑和求助难题，同时为领队提供实时的团员状态监控，并让家属随时掌握旅行进度。</p>
+      <p style="margin-top:10px">本原型为课程演示版本，在浏览器中以 iOS 手机框架呈现，支持三个用户角色的交互演示。</p>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">English</div>
+      <p><strong>GroupFly</strong> is a mobile app prototype designed for <strong>elderly group travel</strong>. It solves the navigation anxiety seniors face at airports, gives tour guides real-time group status monitoring, and lets family members follow the journey from home.</p>
+      <p style="margin-top:10px">This is a browser-based course prototype rendered inside an iOS phone frame, supporting interactive demos across three user roles.</p>
+    </div>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">👵</div>
+      <h3>旅行者 / Traveler</h3>
+      <p>老年旅行者，需要清晰的逐步引导完成机场流程（值机 → 安检 → 登机口 → 登机）。<br><em>Elderly traveler needing step-by-step airport guidance.</em></p>
+      <span class="card-tag">Traveler Role</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <h3>领队 / Tour Guide</h3>
+      <p>团队领队，实时掌握所有成员的证件、行李、值机及位置状态，并处理警报。<br><em>Tour guide monitoring document, baggage, check-in & location status for all members.</em></p>
+      <span class="card-tag orange">Guide Role</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">💚</div>
+      <h3>家属 / Family</h3>
+      <p>在家等候的家人，通过时间线实时跟踪旅行者的出行里程碑，获得安心感。<br><em>Family members at home tracking the traveler's journey milestones in real time.</em></p>
+      <span class="card-tag green">Family Role</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     §2 OPENING
+═══════════════════════════════════════════ -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <div class="section-icon icon-blue">🖥️</div>
+    <div class="section-header-text">
+      <h2>2. 打开原型 / Opening the Prototype</h2>
+      <p>How to launch GroupFly in your browser</p>
+    </div>
+  </div>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">中文</div>
+      <p>原型是一个独立的 HTML 文件，无需安装任何软件，直接用浏览器打开即可运行。推荐使用 <strong>Chrome 或 Safari</strong>。</p>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">English</div>
+      <p>The prototype is a self-contained HTML file — no installation needed. Open it directly in a browser. <strong>Chrome or Safari</strong> is recommended.</p>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <strong>找到文件 / Locate the file</strong>
+        <p>在项目文件夹中找到 <code>Group Air Travel.html</code>，即为原型主文件。<br>
+           <em>Find <code>Group Air Travel.html</code> in the project folder — this is the main prototype file.</em></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <strong>双击打开 / Double-click to open</strong>
+        <p>双击该 HTML 文件，系统将自动用默认浏览器打开。<br>
+           <em>Double-click the file; your default browser will open it automatically.</em></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <strong>等待加载 / Wait for it to load</strong>
+        <p>页面加载完成后，将看到绿色背景上居中显示的 iPhone 手机框架，顶部标有 <strong>GroupFly · PROTOTYPE</strong>。<br>
+           <em>Once loaded, you'll see an iPhone frame centered on a green background, labelled <strong>GroupFly · PROTOTYPE</strong> at the top.</em></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="screenshot-wrap">
+    <div style="max-width:520px; width:100%">
+      <img src="screenshots/fixed.png" alt="GroupFly prototype loaded in browser">
+      <p class="screenshot-cap">图 2-1 · 原型在浏览器中加载后的效果（显示旅行者视图）<br>
+         Fig 2-1 · Prototype loaded in browser, showing Traveler view</p>
+    </div>
+  </div>
+
+  <div class="note tip">
+    <span class="note-icon">💡</span>
+    <p><strong>提示 / Tip：</strong>所有 <code>.jsx</code> 源文件和 <code>Group Air Travel.html</code> 必须放在同一目录下，否则原型无法正常显示。<br>
+       <em>All <code>.jsx</code> source files and <code>Group Air Travel.html</code> must remain in the same folder, or the prototype will not display correctly.</em></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     §3 ROLE SWITCHER
+═══════════════════════════════════════════ -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <div class="section-icon icon-green">🔀</div>
+    <div class="section-header-text">
+      <h2>3. 角色切换 / Role Switcher</h2>
+      <p>Switching between the three user perspectives</p>
+    </div>
+  </div>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">中文</div>
+      <p>手机屏幕顶部有一个三段式切换栏，分别对应三个用户角色。点击任意标签即可切换到对应视图，当前激活的标签会高亮显示（绿色填充）。</p>
+      <p style="margin-top:10px">屏幕下方还有三个角色描述标签（带 emoji），同样可以点击切换角色。</p>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">English</div>
+      <p>At the top of the phone screen is a three-segment tab bar, one per user role. Tap any label to switch — the active tab is highlighted in green. The three pill buttons below the phone also switch roles.</p>
+    </div>
+  </div>
+
+  <div class="ui-mock">
+    <div class="mock-title">角色切换栏示意 / Role Switcher Bar</div>
+    <div style="display:flex;gap:6px;background:#E5F4EC;border-radius:12px;padding:4px;">
+      <div style="flex:1;padding:10px;border-radius:9px;background:#7BC8A4;color:white;text-align:center;font-weight:800;font-size:14px;">Traveler</div>
+      <div style="flex:1;padding:10px;border-radius:9px;text-align:center;font-weight:700;font-size:14px;color:#4A7862;">Guide</div>
+      <div style="flex:1;padding:10px;border-radius:9px;text-align:center;font-weight:700;font-size:14px;color:#4A7862;">Family</div>
+    </div>
+    <p style="margin-top:12px;font-size:12px;color:#8FB09E;">▲ 绿色填充 = 当前激活 / Green fill = currently active</p>
+  </div>
+
+  <table>
+    <thead><tr><th>标签 / Tab</th><th>对应角色 / Role</th><th>主要功能 / Main Function</th></tr></thead>
+    <tbody>
+      <tr><td><span class="role-badge role-traveler">Traveler</span></td><td>老年旅行者 / Elderly traveler</td><td>逐步机场引导 + SOS 紧急求助<br><em>Step-by-step guidance + SOS</em></td></tr>
+      <tr><td><span class="role-badge role-guide">Guide</span></td><td>团队领队 / Tour guide</td><td>成员状态总览、地图定位、警报处理<br><em>Member overview, map, alerts</em></td></tr>
+      <tr><td><span class="role-badge role-family">Family</span></td><td>家属 / Family member</td><td>旅行时间线跟踪 + 自动通知<br><em>Journey timeline + auto notifications</em></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     §4 TRAVELER VIEW
+═══════════════════════════════════════════ -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <div class="section-icon icon-green">👵</div>
+    <div class="section-header-text">
+      <h2>4. 旅行者视图 / Traveler View</h2>
+      <p>Step-by-step airport guidance for elderly travelers</p>
+    </div>
+  </div>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">中文</div>
+      <p>旅行者视图以大字体、高对比度的卡片形式，将机场流程分为 4 个清晰步骤，每次仅显示当前步骤，减少认知负担。顶部进度条帮助旅行者了解自己在整体流程中的位置。</p>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">English</div>
+      <p>The Traveler view breaks the airport journey into 4 clear steps, showing only the current step at a time with large text and high-contrast cards. A progress bar at the top shows where the traveler is in the overall process.</p>
+    </div>
+  </div>
+
+  <h3 class="subsection">4.1 进度步骤 / Progress Steps</h3>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🎟️</div>
+      <h3>Step 1 · 值机 / Check-in</h3>
+      <p>前往 C12 柜台（2 号航站楼 2 楼）完成值机。<br><em>Go to Counter C12, Terminal 2 Level 2.</em></p>
+      <p style="margin-top:8px;font-size:12px;color:#8FB09E;">💡 请携带护照及机票<br><em>Bring passport &amp; ticket</em></p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛡️</div>
+      <h3>Step 2 · 安检 / Security</h3>
+      <p>通过 B 区安检，脱掉腰带和手表。<br><em>Zone B Security — remove belt &amp; watch.</em></p>
+      <p style="margin-top:8px;font-size:12px;color:#8FB09E;">💡 遵从工作人员指引<br><em>Follow staff instructions</em></p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚪</div>
+      <h3>Step 3 · 登机口 / Gate</h3>
+      <p>前往 G15 登机口（3 楼），14:30 开始登机。<br><em>Gate G15, Level 3 — boarding at 14:30.</em></p>
+      <p style="margin-top:8px;font-size:12px;color:#8FB09E;">💡 乘电梯前往，预留 15 分钟<br><em>Take elevator, allow 15 min</em></p>
+    </div>
+    <div class="card">
+      <div class="card-icon">✈️</div>
+      <h3>Step 4 · 登机 / Board</h3>
+      <p>G15 登机口已开放，出示登机牌上机，座位 23 排 A 座。<br><em>Gate open — show boarding pass. Seat: Row 23, Seat A.</em></p>
+      <span class="card-tag green">Last Step</span>
+    </div>
+  </div>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">操作说明 / How to Use</div>
+      <p><strong>点击步骤卡片</strong>即可前进到下一步（卡片底部有"Tap to advance step →"提示）。步骤完成后，进度条对应节点会变为绿色打勾状态。到达第 4 步后显示"✈️ Have a great flight!"。</p>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">How to advance</div>
+      <p><strong>Tap the step card</strong> to advance to the next step (a "Tap to advance step →" hint appears at the bottom of the card). Completed steps turn green with a checkmark. After Step 4 a farewell message appears.</p>
+    </div>
+  </div>
+
+  <div class="screenshot-wrap">
+    <div style="max-width:520px;width:100%">
+      <img src="screenshots/fixed.png" alt="Traveler view — Step 2 Pass Security">
+      <p class="screenshot-cap">图 4-1 · 旅行者视图 — Step 2「通过安检」，顶部进度条显示当前位置<br>
+         Fig 4-1 · Traveler view — Step 2 "Pass Security", progress bar shows current position</p>
+    </div>
+  </div>
+
+  <h3 class="subsection">4.2 SOS 紧急求助按钮 / SOS Emergency Button</h3>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">中文</div>
+      <p>屏幕右下角有一个橙色的 <strong>SOS</strong> 圆形按钮（始终可见，不受步骤影响）。老年旅行者遇到困难时，点击此按钮即可立即向领队发出求助信号。</p>
+      <ul style="margin-top:10px;padding-left:18px;font-size:13.5px;color:#4A7862;line-height:2">
+        <li>点击后按钮短暂变为红色</li>
+        <li>随即弹出确认提示：「Guide has been notified!」</li>
+        <li>约 4 秒后自动复位</li>
+      </ul>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">English</div>
+      <p>An orange <strong>SOS</strong> circular button sits in the bottom-right corner, always visible regardless of step. When the traveler needs help, one tap immediately alerts the guide.</p>
+      <ul style="margin-top:10px;padding-left:18px;font-size:13.5px;color:#4A7862;line-height:2">
+        <li>Button flashes red on tap</li>
+        <li>A banner appears: "Guide has been notified!"</li>
+        <li>Resets automatically after ~4 seconds</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note warn">
+    <span class="note-icon">⚠️</span>
+    <p><strong>演示注意 / Demo note：</strong>此为原型，SOS 通知只是 UI 演示效果，不会真正向任何人发送消息。<br>
+       <em>This is a prototype — the SOS notification is a UI demo only and does not send any real message.</em></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     §5 GUIDE VIEW
+═══════════════════════════════════════════ -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <div class="section-icon icon-orange">🎯</div>
+    <div class="section-header-text">
+      <h2>5. 领队视图 / Guide View</h2>
+      <p>Real-time group monitoring dashboard for the tour guide</p>
+    </div>
+  </div>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">中文</div>
+      <p>领队视图是一个三标签页的仪表盘，底部导航栏包含三个标签：<strong>Overview（总览）</strong>、<strong>Locate（定位）</strong>、<strong>Alerts（警报）</strong>。点击底部图标即可切换。</p>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">English</div>
+      <p>The Guide view is a three-tab dashboard. The bottom navigation bar contains: <strong>Overview</strong>, <strong>Locate</strong>, and <strong>Alerts</strong>. Tap the icons to switch between tabs.</p>
+    </div>
+  </div>
+
+  <!-- ── 5.1 Overview ── -->
+  <h3 class="subsection">5.1 总览标签 / Overview Tab</h3>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">中文</div>
+      <p>总览标签分为三个区域：</p>
+      <ol style="margin-top:10px;padding-left:18px;font-size:13.5px;color:#4A7862;line-height:2.2">
+        <li><strong>航班信息卡</strong> — 显示航班号（MU5137）、出发地（BNE）、目的地（PEK）及距起飞时间倒计时</li>
+        <li><strong>三个状态汇总卡</strong> — 分别显示已值机人数（22）、待处理人数（5）、需要帮助人数（3）</li>
+        <li><strong>团员列表</strong> — 每位成员显示姓名、状态标识及四个图标（护照/行李/值机/位置）</li>
+      </ol>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">English</div>
+      <p>The Overview tab has three sections:</p>
+      <ol style="margin-top:10px;padding-left:18px;font-size:13.5px;color:#4A7862;line-height:2.2">
+        <li><strong>Flight header</strong> — flight number (MU5137), BNE → PEK route, countdown timer</li>
+        <li><strong>Three summary cards</strong> — Checked In (22), Pending (5), Need Help (3)</li>
+        <li><strong>Member list</strong> — each member shows name, status dot, and four status icons (Passport / Baggage / Check-in / Location)</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="dot" style="background:#34D399"></div>All Clear — 全部正常</div>
+    <div class="legend-item"><div class="dot" style="background:#FBBF24"></div>Needs Attention — 需关注</div>
+    <div class="legend-item"><div class="dot" style="background:#F87171"></div>Needs Help — 需要帮助</div>
+  </div>
+
+  <div class="ui-mock">
+    <div class="mock-title">成员列表行示意 / Member Row Layout</div>
+    <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:#FEF0E4;border-radius:12px;border:1.5px solid #FDDBB0">
+      <div style="width:36px;height:36px;border-radius:11px;background:#F4A261;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:white">LG</div>
+      <div style="flex:1">
+        <div style="font-size:14px;font-weight:800;color:#1A2B22">Liu Guifang</div>
+        <div style="display:flex;align-items:center;gap:5px;margin-top:3px">
+          <div style="width:6px;height:6px;border-radius:50%;background:#F87171"></div>
+          <span style="font-size:11px;color:#4A7862;font-weight:600">Needs Help</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:5px;font-size:18px">✅ ✅ ❌ ❌</div>
+    </div>
+    <p style="margin-top:10px;font-size:12px;color:#8FB09E">护照✅ 行李✅ 值机❌ 位置❌ &nbsp;→&nbsp; Passport✅ Baggage✅ Check-in❌ Location❌</p>
+  </div>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">发送付款链接</div>
+      <p>列表底部有一个橙色按钮「Send Payment Link to Family」。点击后按钮变绿，显示「Payment Link Sent!」确认已发送，3 秒后复位。此功能模拟领队向家属发送付款链接的操作。</p>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">Send Payment Link</div>
+      <p>Below the member list is an orange button "Send Payment Link to Family". On tap it turns green and shows "Payment Link Sent!" for 3 seconds, simulating sending a payment link to family members.</p>
+    </div>
+  </div>
+
+  <!-- ── 5.2 Locate ── -->
+  <h3 class="subsection">5.2 定位标签 / Locate Tab</h3>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">中文</div>
+      <p>定位标签显示一张<strong>机场航站楼示意地图</strong>（PVG T2），地图上标有：</p>
+      <ul style="margin-top:8px;padding-left:18px;font-size:13.5px;color:#4A7862;line-height:2">
+        <li>四个区域标签：Security（安检）、Gate G15（登机口）、Check-in（值机区）、Lounge（候机厅）</li>
+        <li><strong>YOU</strong>（领队位置，深绿色大方块，居中）</li>
+        <li>各成员头像方块（按状态着色：绿/黄/橙）</li>
+      </ul>
+      <p style="margin-top:10px">点击任意成员头像，底部弹出该成员的详情卡片（姓名、状态、问题描述）。再次点击头像或点击卡片 ✕ 关闭。</p>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">English</div>
+      <p>The Locate tab shows a schematic <strong>terminal map</strong> (PVG T2) with:</p>
+      <ul style="margin-top:8px;padding-left:18px;font-size:13.5px;color:#4A7862;line-height:2">
+        <li>Four zone labels: Security, Gate G15, Check-in, Lounge</li>
+        <li><strong>YOU</strong> (guide's position — large dark-green tile, center)</li>
+        <li>Member avatar tiles color-coded by status (green/yellow/orange)</li>
+      </ul>
+      <p style="margin-top:10px">Tap any member tile to reveal a detail card at the bottom showing name, status, and issues. Tap again or press ✕ to dismiss.</p>
+    </div>
+  </div>
+
+  <!-- ── 5.3 Alerts ── -->
+  <h3 class="subsection">5.3 警报标签 / Alerts Tab</h3>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">中文</div>
+      <p>警报标签列出所有状态为「Needs Attention」或「Needs Help」的成员，以及其具体问题（如未验证护照、行李未托运、未完成值机、位置未知）。</p>
+      <p style="margin-top:10px">每条警报卡片底部有两个按钮：</p>
+      <ul style="padding-left:18px;font-size:13.5px;color:#4A7862;line-height:2;margin-top:6px">
+        <li><strong>Mark Resolved（标记已处理）</strong>— 点击后卡片变灰显示「✓」，警报数量减一</li>
+        <li><strong>Call Member（联系成员）</strong>— 模拟拨打成员电话（原型中无实际功能）</li>
+      </ul>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">English</div>
+      <p>The Alerts tab lists all members with status "Needs Attention" or "Needs Help", along with specific issues (passport not verified, baggage not checked, not checked in, location unknown).</p>
+      <p style="margin-top:10px">Each alert card has two action buttons:</p>
+      <ul style="padding-left:18px;font-size:13.5px;color:#4A7862;line-height:2;margin-top:6px">
+        <li><strong>Mark Resolved</strong> — Card greys out with a ✓ and the alert count decreases by one</li>
+        <li><strong>Call Member</strong> — Simulates calling the member (no real function in prototype)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note info">
+    <span class="note-icon">🔔</span>
+    <p><strong>Alerts 标签角标 / Alerts badge：</strong>当 Alerts 标签非激活时，其铃铛图标会显示一个红色小圆点（角标），提示有未处理的警报。切换到 Alerts 标签后角标消失。<br>
+       <em>When the Alerts tab is not active, a red badge dot appears on its bell icon. The badge disappears when you switch to the Alerts tab.</em></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     §6 FAMILY VIEW
+═══════════════════════════════════════════ -->
+<section class="section" id="s6">
+  <div class="section-header">
+    <div class="section-icon icon-green">💚</div>
+    <div class="section-header-text">
+      <h2>6. 家属视图 / Family View</h2>
+      <p>Journey timeline for family members staying at home</p>
+    </div>
+  </div>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">中文</div>
+      <p>家属视图专为在家等待的家人设计，核心是一张直观的<strong>旅行时间线</strong>，将整个行程分为 6 个里程碑，让家人清楚看到旅行者当前所处的阶段。</p>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">English</div>
+      <p>The Family view is designed for relatives waiting at home. Its centerpiece is a <strong>journey timeline</strong> with 6 milestones, giving family a clear picture of where their traveler is right now.</p>
+    </div>
+  </div>
+
+  <h3 class="subsection">6.1 顶部安心卡片 / Reassurance Card</h3>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">中文</div>
+      <p>视图顶部有一张绿色渐变的安心卡片，显示：</p>
+      <ul style="padding-left:18px;font-size:13.5px;color:#4A7862;line-height:2;margin-top:8px">
+        <li>旅行者姓名及当前状态（如 "Mum is at the gate 🚪"）</li>
+        <li>已完成步骤数（Steps Done: 2/6）</li>
+        <li>航班号（MU5137）</li>
+        <li>最后更新时间（Last Update: 5 min ago）</li>
+      </ul>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">English</div>
+      <p>A green reassurance card at the top shows:</p>
+      <ul style="padding-left:18px;font-size:13.5px;color:#4A7862;line-height:2;margin-top:8px">
+        <li>Traveler's name and a friendly status message (e.g. "Mum is at the gate 🚪")</li>
+        <li>Steps completed (Steps Done: 2/6)</li>
+        <li>Flight number (MU5137)</li>
+        <li>Last update time (5 min ago)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="subsection">6.2 旅行时间线 / Journey Timeline</h3>
+
+  <table>
+    <thead><tr><th>里程碑 / Milestone</th><th>时间 / Time</th><th>详情 / Detail</th><th>状态</th></tr></thead>
+    <tbody>
+      <tr><td>✅ Checked In（已值机）</td><td>08:15</td><td>Counter C12 · PVG T2</td><td style="color:#34D399;font-weight:700">Done</td></tr>
+      <tr><td>✅ Security Passed（安检通过）</td><td>09:02</td><td>Zone B · No issues</td><td style="color:#34D399;font-weight:700">Done</td></tr>
+      <tr><td>🟠 At Gate G15（在登机口）</td><td>09:45</td><td>Level 3 · On time</td><td style="color:#F4A261;font-weight:700">Now Here ●</td></tr>
+      <tr><td>⬜ Boarding（登机）</td><td>14:30</td><td>Expected boarding time</td><td style="color:#8FB09E">Pending</td></tr>
+      <tr><td>⬜ Departed（已起飞）</td><td>15:00</td><td>Flight MU5137 · PVG→PEK</td><td style="color:#8FB09E">Pending</td></tr>
+      <tr><td>⬜ Arrived（已到达）</td><td>17:30</td><td>PEK Terminal 3</td><td style="color:#8FB09E">Pending</td></tr>
+    </tbody>
+  </table>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">时间线颜色含义</div>
+      <p>绿色节点 = 已完成；橙色节点（闪动） = 当前所在位置；灰色节点 = 待完成。竖线从顶部开始以绿色渐变表示进度，未完成部分为灰色。</p>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">Timeline colors</div>
+      <p>Green dot = completed; Orange dot (pulsing) = current location; Grey dot = pending. The vertical line is green up to the current milestone, grey after.</p>
+    </div>
+  </div>
+
+  <h3 class="subsection">6.3 自动通知提示 / Auto Notification Banner</h3>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">中文</div>
+      <p>页面底部有一张绿色提示卡片，显示「Auto Notifications On」，告知家属将在旅行者登机和降落时自动收到推送通知。这一设计旨在减少家属反复查看 App 的焦虑。</p>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">English</div>
+      <p>A green banner at the bottom reads "Auto Notifications On", reassuring family members that they will be notified automatically when the traveler boards and lands — reducing the need to keep checking the app.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     §7 TWEAKS PANEL
+═══════════════════════════════════════════ -->
+<section class="section" id="s7">
+  <div class="section-header">
+    <div class="section-icon icon-purple">🎛️</div>
+    <div class="section-header-text">
+      <h2>7. 调参面板 / Tweaks Panel</h2>
+      <p>Customize prototype parameters for your demo</p>
+    </div>
+  </div>
+
+  <div class="bilingual">
+    <div class="bi-cn">
+      <div class="bi-lang">中文</div>
+      <p>调参面板（Tweaks Panel）是原型专用的演示配置工具，可以在不修改代码的情况下实时调整原型中的文字和参数，方便演示不同场景。</p>
+      <p style="margin-top:10px">打开方式：在宿主平台（如 Claude Code 的 Preview 模式）中点击编辑按钮，面板会从屏幕右下角弹出，可拖动重新定位。</p>
+    </div>
+    <div class="bi-en">
+      <div class="bi-lang">English</div>
+      <p>The Tweaks Panel is a prototype-only configuration tool that lets you change displayed text and parameters in real time — no code editing needed — for demo scenario switching.</p>
+      <p style="margin-top:10px">To open it: click the edit button in the host platform (e.g. Claude Code's Preview mode). The panel floats from the bottom-right corner and can be dragged to reposition.</p>
+    </div>
+  </div>
+
+  <h3 class="subsection">7.1 可调参数 / Adjustable Parameters</h3>
+
+  <table>
+    <thead><tr><th>参数 / Parameter</th><th>说明 / Description</th><th>示例值 / Example</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>Traveler name</strong></td>
+        <td>旅行者姓名，显示在顶部问候语和家属视图中<br><em>Traveler's name shown in greeting and Family view</em></td>
+        <td>Grandma Wang</td>
+      </tr>
+      <tr>
+        <td><strong>Current step</strong></td>
+        <td>旅行者当前所在步骤（0-3 对应 4 个步骤）<br><em>Traveler's current step (0–3 for the 4 steps)</em></td>
+        <td>0 / 1 / 2 / 3</td>
+      </tr>
+      <tr>
+        <td><strong>Departure time</strong></td>
+        <td>领队视图中显示的距起飞时间文字<br><em>Countdown text shown in the Guide's Overview flight card</em></td>
+        <td>6h 32min</td>
+      </tr>
+      <tr>
+        <td><strong>Member name</strong></td>
+        <td>家属视图中跟踪的旅行者称谓<br><em>Name used in Family view reassurance message</em></td>
+        <td>Mum</td>
+      </tr>
+      <tr>
+        <td><strong>Button / highlight color</strong></td>
+        <td>全局强调色（按钮、高亮）<br><em>Global accent color for buttons and highlights</em></td>
+        <td>#F4A261 / #E8735A / #F9C74F / #90BE6D</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note tip">
+    <span class="note-icon">💡</span>
+    <p><strong>演示技巧 / Demo tip：</strong>展示旅行者视图时，先将「Current step」调至 0（值机），逐步演示到 3（登机），可以展示完整的旅行流程。将旅行者姓名改为评委熟悉的名字可以提升演示代入感。<br>
+       <em>For demos, set "Current step" to 0 then tap through to 3 to walk through the full journey. Changing the traveler name to a familiar name improves audience engagement.</em></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     §8 FAQ
+═══════════════════════════════════════════ -->
+<section class="section" id="s8">
+  <div class="section-header">
+    <div class="section-icon icon-gray">❓</div>
+    <div class="section-header-text">
+      <h2>8. 常见问题 / FAQ</h2>
+      <p>Troubleshooting and common questions</p>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num" style="background:linear-gradient(135deg,#F4A261,#E07832)">Q</div>
+      <div class="step-body">
+        <strong>打开 HTML 文件后页面空白 / Page is blank after opening HTML</strong>
+        <p>确认所有 <code>.jsx</code> 文件（<code>app-main.jsx</code>、<code>app-shared.jsx</code>、<code>traveler-view.jsx</code>、<code>guide-view.jsx</code>、<code>family-view.jsx</code>、<code>tweaks-panel.jsx</code>、<code>ios-frame.jsx</code>）与 HTML 文件在<strong>同一目录</strong>下，且 <code>uploads/</code> 文件夹也存在。<br>
+           <em>Ensure all <code>.jsx</code> files and the <code>uploads/</code> folder are in the same directory as the HTML file.</em></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:linear-gradient(135deg,#F4A261,#E07832)">Q</div>
+      <div class="step-body">
+        <strong>点击步骤卡片没有反应 / Tapping the step card does nothing</strong>
+        <p>步骤已到达最后一步（Step 4，登机），此时卡片不再响应点击。若需重置，刷新页面或通过 Tweaks Panel 将「Current step」调回 0。<br>
+           <em>You've reached the last step (Step 4, Board). Refresh the page or use the Tweaks Panel to reset "Current step" to 0.</em></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:linear-gradient(135deg,#F4A261,#E07832)">Q</div>
+      <div class="step-body">
+        <strong>Tweaks Panel 不出现 / Tweaks Panel doesn't appear</strong>
+        <p>Tweaks Panel 需要宿主平台发送特定消息才能激活（如 Claude Code Preview 的编辑模式）。直接在浏览器中打开文件时，面板不会自动显示。可在浏览器控制台执行：<br>
+           <code>window.postMessage({ type: '__activate_edit_mode' }, '*')</code> 手动激活。<br>
+           <em>The panel is activated by a host-platform message. In standalone browser mode, run the above command in the browser console to open it manually.</em></p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num" style="background:linear-gradient(135deg,#F4A261,#E07832)">Q</div>
+      <div class="step-body">
+        <strong>原型数据是真实的吗 / Is the data real?</strong>
+        <p>不是。所有数据（成员姓名、航班信息、位置、状态）均为硬编码的演示数据，不连接任何后端服务。<br>
+           <em>No. All data (member names, flight info, locations, statuses) is hardcoded demo data — no backend is connected.</em></p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════
+     QUICK REFERENCE
+═══════════════════════════════════════════ -->
+<section class="section" id="ref">
+  <div class="section-header">
+    <div class="section-icon icon-green">📋</div>
+    <div class="section-header-text">
+      <h2>快速参考 / Quick Reference</h2>
+      <p>At-a-glance summary of all interactive elements</p>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th>元素 / Element</th><th>位置 / Location</th><th>操作 / Action</th><th>效果 / Result</th></tr></thead>
+    <tbody>
+      <tr><td>角色切换栏 Role tabs</td><td>手机顶部 / Phone top</td><td>点击标签 / Tap tab</td><td>切换视图 / Switch view</td></tr>
+      <tr><td>步骤卡片 Step card</td><td>旅行者视图 / Traveler</td><td>点击卡片 / Tap card</td><td>前进一步 / Advance step</td></tr>
+      <tr><td>SOS 按钮 SOS btn</td><td>旅行者视图右下 / Traveler BR</td><td>点击 / Tap</td><td>弹出通知提示 / Show alert banner</td></tr>
+      <tr><td>底部导航 Bottom nav</td><td>领队视图底部 / Guide bottom</td><td>点击图标 / Tap icon</td><td>切换标签页 / Switch tab</td></tr>
+      <tr><td>成员头像 Member tile</td><td>领队视图-Locate</td><td>点击 / Tap</td><td>弹出详情卡 / Show detail card</td></tr>
+      <tr><td>Mark Resolved 按钮</td><td>领队视图-Alerts</td><td>点击 / Tap</td><td>警报标记已处理 / Resolve alert</td></tr>
+      <tr><td>发送付款链接按钮</td><td>领队视图-Overview 底部</td><td>点击 / Tap</td><td>确认提示 3 秒 / 3-sec confirmation</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="section-divider">
+
+<div class="note tip" style="margin-top:0">
+  <span class="note-icon">✈️</span>
+  <p style="font-size:13px">本使用说明由 Claude Code 自动生成，基于原型源代码分析编写。如有疑问，请联系原型设计者。<br>
+     <em>This guide was auto-generated by Claude Code based on analysis of the prototype source code. Contact the prototype author for questions.</em></p>
+</div>
+
+</main>
+
+<footer>
+  GroupFly Prototype &nbsp;·&nbsp; EIBS7300 Group Project &nbsp;·&nbsp; 2026
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  使用说明 / User Guide &nbsp;·&nbsp; 生成日期 2026-05-18
+</footer>
+
+</body>
+</html>

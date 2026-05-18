@@ -1,0 +1,4 @@
+.DS_Store
+make_guide.py
+__pycache__/
+*.pyc

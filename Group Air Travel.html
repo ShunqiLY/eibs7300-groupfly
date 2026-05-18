@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GroupFly — Air Travel Coordination</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"
+    integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
+    integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
+    integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
+    crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="ios-frame.jsx"></script>
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(150deg, #3D8C65 0%, #2E7A57 40%, #1E5E42 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      font-family: 'Nunito', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    #root {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* ── Animations ─────────────────────────────────────── */
+    @keyframes sosGlow {
+      0%,100% { box-shadow: 0 4px 14px rgba(244,162,97,0.45); }
+      50%      { box-shadow: 0 4px 20px rgba(244,162,97,0.75), 0 0 0 8px rgba(244,162,97,0.15); }
+    }
+
+    @keyframes milestonePulse {
+      0%,100% { transform: scale(1);   opacity: 1;   }
+      50%      { transform: scale(1.5); opacity: 0.5; }
+    }
+
+    @keyframes ringPulse {
+      0%   { transform: translate(-50%,-50%) scale(1);   opacity: 0.6; }
+      100% { transform: translate(-50%,-50%) scale(1.7); opacity: 0;   }
+    }
+
+    @keyframes stepSlide {
+      from { opacity: 0.4; transform: translateX(18px); }
+      to   { opacity: 1;   transform: translateX(0); }
+    }
+
+    .sos-btn        { animation: sosGlow 2s ease-in-out infinite; }
+    .role-view      { opacity: 1; }
+    .step-card      { animation: stepSlide 0.28s cubic-bezier(0.22,1,0.36,1) forwards; }
+    .milestone-pulse { animation: ringPulse 1.6s ease-out infinite; }
+
+    /* ── Scrollbar ──────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(123,200,164,0.3); border-radius: 2px; }
+
+    /* ── Tap highlight removal ──────────────────────────── */
+    button, div { -webkit-tap-highlight-color: transparent; }
+  </style>
+
+  <script type="text/babel" src="app-shared.jsx"></script>
+  <script type="text/babel" src="traveler-view.jsx"></script>
+  <script type="text/babel" src="guide-view.jsx"></script>
+  <script type="text/babel" src="family-view.jsx"></script>
+  <script type="text/babel" src="app-main.jsx"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+</html>
