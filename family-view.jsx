@@ -1,11 +1,11 @@
 // family-view.jsx — Family member tracking interface
 
 const FAMILY_MILESTONES = [
-  { id:'checkin',  label:'Checked In',     time:'08:15', detail:'Counter C12 · PVG T2',  done:true,    current:false },
+  { id:'checkin',  label:'Checked In',     time:'08:15', detail:'Counter C12 · BNE T2',  done:true,    current:false },
   { id:'security', label:'Security Passed', time:'09:02', detail:'Zone B · No issues',     done:true,    current:false },
   { id:'gate',     label:'At Gate G15',     time:'09:45', detail:'Level 3 · On time',      done:false,   current:true  },
   { id:'boarding', label:'Boarding',         time:'14:30', detail:'Expected boarding time', done:false,   current:false },
-  { id:'departed', label:'Departed',         time:'15:00', detail:'Flight MU5137 · PVG→PEK',done:false,  current:false },
+  { id:'departed', label:'Departed',         time:'15:00', detail:'Flight MU5137 · BNE→PEK',done:false,  current:false },
   { id:'arrived',  label:'Arrived',          time:'17:30', detail:'PEK Terminal 3',         done:false,   current:false },
 ];
 

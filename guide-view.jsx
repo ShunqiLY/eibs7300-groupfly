@@ -177,7 +177,7 @@ function LocateTab() {
     <div style={{ height:'100%', display:'flex', flexDirection:'column', padding:'12px 14px' }}>
       {/* Header */}
       <div style={{ marginBottom:10 }}>
-        <div style={{ fontSize:15, fontWeight:900, color:C.textDark }}>Terminal Map — PVG T2</div>
+        <div style={{ fontSize:15, fontWeight:900, color:C.textDark }}>Terminal Map — BNE T2</div>
         <div style={{ fontSize:11.5, color:C.textMed, fontWeight:600, marginTop:2 }}>
           Tap a member to see details
         </div>
